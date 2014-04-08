@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<features name="camunda-camel-osgi-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <feature name='camunda-camel-osgi' description='${project.name}' version='${project.version}'>
+        <details>${project.description}</details>
+        <feature>camunda</feature>
+        <feature>spring-web-portlet</feature>
+        <bundle>mvn:net.anzix.camunda.demo/camunda-instance/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:org.camunda.bpm.extension.osgi/camunda-bpm-karaf-commands/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:net.anzix.camunda.osgi/camunda-webapp-osgi/1.0.0-SNAPSHOT/war</bundle>
+
+    </feature>
+
+</features>
