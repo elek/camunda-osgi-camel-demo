@@ -4,7 +4,7 @@
 	<ext:property-placeholder />
 
 	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
-		<property name="URL" value="jdbc:h2:mem:camunda;DB_CLOSE_DELAY=-1" />
+		<property name="URL" value="jdbc:h2:data/db/camunda;DB_CLOSE_DELAY=-1" />
 		<property name="user" value="sa" />
 		<property name="password" value="" />
 	</bean>
@@ -19,14 +19,14 @@
 	</bean>
 	
 	<bean id="blueprintELResolver"
-		class="org.camunda.bpm.extension.osgi.blueprint.BlueprintELResolver" />
+		class="net.anzix.camunda.camel.CamelResolver" />
 
 	<bean id="processEngineFactory"
-		class="org.camunda.bpm.extension.osgi.blueprint.ProcessEngineFactoryWithELResolver"
+		class="net.anzix.camunda.camel.ProcessEngineFactory"
 		init-method="init" destroy-method="destroy">
 		<property name="processEngineConfiguration" ref="configuration" />
 		<property name="bundle" ref="blueprintBundle" />
-		<property name="blueprintELResolver" ref="blueprintELResolver" />
+		<property name="camelResolver" ref="blueprintELResolver" />
 	</bean>
 
 	<bean id="processEngine" factory-ref="processEngineFactory"
@@ -55,8 +55,8 @@
 	<service ref="managementService" interface="org.camunda.bpm.engine.ManagementService" />
 	<!-- ############ End BPM services ############ -->
 
-	<reference-list id="activityProviders" availability="optional"
-		interface="org.camunda.bpm.engine.delegate.JavaDelegate" activation="eager">
+	<reference-list id="camelContext" availability="optional"
+		interface="org.apache.camel.CamelContext" activation="eager">
 		<reference-listener ref="blueprintELResolver"
 			bind-method="bindService" unbind-method="unbindService" />
 	</reference-list>

@@ -12,6 +12,12 @@
         <module>camunda-instance</module>
     </modules>
 
+<repositories>
+<repository>
+<id>camunda-community</id>
+<url>https://app.camunda.com/nexus/content/repositories/camunda-bpm-community-extensions/</url>
+</repository>
+</repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
